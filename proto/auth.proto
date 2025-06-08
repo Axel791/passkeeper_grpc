@@ -1,0 +1,28 @@
+syntax = "proto3";
+package pb;
+
+option go_package = "github.com/Axel791/passkeeper_grpc/proto/pb;pb";
+
+import "group.proto";
+import "user.proto";
+
+service AuthService {
+  rpc GetUserGroups (GetUserGroupsRequest) returns (GetUserGroupsResponse);
+  rpc ValidateToken  (ValidateTokenRequest) returns (ValidateTokenResponse);
+}
+
+message GetUserGroupsRequest {
+  int64 user_id = 1;
+}
+
+message GetUserGroupsResponse {
+  repeated Group groups = 1;
+}
+
+message ValidateTokenRequest {
+  string token = 1;
+}
+
+message ValidateTokenResponse {
+  User user = 1;
+}
